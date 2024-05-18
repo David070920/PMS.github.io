@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report an Issue | Pesticide Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Report an Issue</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="report.html">Report an Issue</a></li>
+                <li><a href="map.html">Map</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Report a Pest or Disease Outbreak</h2>
+            <form action="submit_report.php" method="post" enctype="multipart/form-data">
+                <label for="location">Location (Address or Coordinates):</label>
+                <input type="text" id="location" name="location" required>
+                
+                <label for="type">Type of Issue:</label>
+                <select id="type" name="type" required>
+                    <option value="pest">Pest</option>
+                    <option value="disease">Disease</option>
+                </select>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+
+                <label for="photos">Upload Photos:</label>
+                <input type="file" id="photos" name="photos[]" multiple>
+
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Your Phone Number (optional):</label>
+                <input type="tel" id="phone" name="phone">
+
+                <button type="submit">Submit Report</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Pesticide Management System. All rights reserved.</p>
+        <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+    </footer>
+</body>
+</html>
