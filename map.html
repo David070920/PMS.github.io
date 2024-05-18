@@ -142,6 +142,11 @@
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
             maxZoom: 18,
         }).addTo(map);
+        // Add wind map layer
+        var windLayer = L.tileLayer('https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=18ac129054734a0f87b182605241805', {
+            maxZoom: 18,
+            opacity: 0.5
+        }).addTo(map);
     }
 </script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
