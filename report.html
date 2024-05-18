@@ -107,7 +107,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report an Issue | Pesticide Management System</title>
+    <title>Report a Pest | Pesticide Management System</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -129,9 +129,26 @@
             <form action="submit_report.php" method="post" enctype="multipart/form-data">
                 <label for="location">Location (Address or Coordinates):</label>
                 <input type="text" id="location" name="location" required>
-                
-                <label for="type">Type of Issue:</label>
-                <select id="type" name="type" required>
+                <button type="button" onclick="getCoordinates()">Get Coordinates</button>
+
+                <script>
+                    function getCoordinates() {
+                        var address = document.getElementById("location").value;
+                        var geocoder = new google.maps.Geocoder();
+
+                        geocoder.geocode({ address: address }, function(results, status) {
+                            if (status === "OK") {
+                                var latitude = results[0].geometry.location.lat();
+                                var longitude = results[0].geometry.location.lng();
+
+                                document.getElementById("latitude").value = latitude;
+                                document.getElementById("longitude").value = longitude;
+                            } else {
+                                alert("Geocode was not successful for the following reason: " + status);
+                            }
+                        });
+                    }
+                </script>
                     <option value="pest">Pest</option>
                     <option value="disease">Disease</option>
                 </select>
