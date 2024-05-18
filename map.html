@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,3 +28,15 @@
     <script src="script.js"></script>
 </body>
 </html>
+<div id="map" style="height: 600px;"></div>
+<script>
+    function initMap() {
+        // Create a map centered on Romania
+        var romania = { lat: 45.9432, lng: 24.9668 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 7,
+            center: romania
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
