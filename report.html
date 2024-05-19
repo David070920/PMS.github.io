@@ -202,11 +202,11 @@
             xhr.open("POST", "write_to_csv.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    console.log("Data written to CSV file successfully");
-                }
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Data written to CSV file successfully");
+            }
             };
-            xhr.send("data=" + encodeURIComponent(dataLine));
+            xhr.send("data=" + encodeURIComponent(dataLine) + "&filename=daunatori.csv");
         }
 
         // Add the submit event listener to the form
