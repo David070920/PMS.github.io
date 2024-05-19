@@ -186,24 +186,60 @@
             document.getElementById("location").value = location.lat() + ", " + location.lng();
         }
 
-        function toggleOtherPest() {
-            var pestSelect = document.getElementById("pest");
-            var otherPestInput = document.getElementById("otherPest");
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
 
-            if (pestSelect.value === "other") {
-                otherPestInput.style.display = "block";
-                otherPestInput.setAttribute("required", "required");
-            } else {
-                otherPestInput.style.display = "none";
-                otherPestInput.removeAttribute("required");
-            }
+            // Get the form values
+            var location = document.getElementById("location").value;
+            var pest = document.getElementById("pest").value;
+            var lastSpotted = document.getElementById("lastSpotted").value;
+
+            // Create a new line of data
+            var dataLine = location + "," + pest + "," + lastSpotted;
+
+            // Write the data to the CSV file
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "write_to_csv.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log("Data written to CSV file successfully");
+                }
+            };
+            xhr.send("data=" + encodeURIComponent(dataLine));
         }
 
+        // Add the submit event listener to the form
+        var form = document.querySelector("form");
+        form.addEventListener("submit", submitForm);
+
         function getCoordinates() {
-            // Function to get coordinates remains unchanged
+            // Get the location input value
+            var location = document.getElementById("location").value;
+
+            // Use a geocoding service to convert the location to coordinates
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address: location }, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                // Get the first result
+                var result = results[0];
+
+                // Get the coordinates
+                var coordinates = result.geometry.location;
+
+                // Update the input field with the coordinates
+                document.getElementById("location").value = coordinates.lat() + ", " + coordinates.lng();
+
+                // Place a marker on the map
+                placeMarker(coordinates);
+            } else {
+                console.log("Geocoding failed: " + status);
+            }
+            });
         }
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0nqyY0gf4-4yxWV0gcAOSB1Yz_iu5Kks&callback=initMap" async defer></script>
 </body>
 </html>
+
