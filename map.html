@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outbreak Map | Pesticide Management System</title>
+    <title>Harta Epidemiei | Sistem de Gestionare a Pesticidelor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -116,19 +115,19 @@
 </head>
 <body>
     <header>
-        <h1>Outbreak Map</h1>
+        <h1>Harta Epidemiei</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="report.html">Report a Pest</a></li>
-                <li><a href="map.html">Map</a></li>
-                <li><a href="resources.html">Resources</a></li>
+                <li><a href="index.html">Acasă</a></li>
+                <li><a href="report.html">Raportează un Dăunător</a></li>
+                <li><a href="map.html">Hartă</a></li>
+                <li><a href="resources.html">Resurse</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 <div id="map"></div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0nqyY0gf4-4yxWV0gcAOSB1Yz_iu5Kks&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 <script>
     function initMap() {
         // Create a map object and specify the DOM element for display
@@ -142,7 +141,7 @@
             const longitude = position.coords.longitude;
 
             // Fetch weather data from OpenWeatherMap API using the user's coordinates
-            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=c727077b38f64754abbb2779b6920f9d`)
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=YOUR_API_KEY`)
                 .then(response => response.json())
                 .then(data => {
                     // Get wind speed and direction from the weather data

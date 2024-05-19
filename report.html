@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report a Pest | Pesticide Management System</title>
+    <title>Raportează o Infestare | Sistem de Gestionare a Pesticidelor</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -122,38 +122,38 @@
     </header>
     <main>
         <section>
-            <h2>Report a Pest or Disease Outbreak</h2>
+            <h2>Raportează o Infestare cu Dăunători sau Boli</h2>
             <form action="submit_report.php" method="post" enctype="multipart/form-data">
-                <label for="location">Location (Address or Coordinates):</label>
+                <label for="location">Locație (Adresă sau Coordonate):</label>
                 <input type="text" id="location" name="location" required>
-                <button type="button" onclick="getCoordinates()">Get Coordinates</button>
+                <button type="button" onclick="getCoordinates()">Obține Coordonatele</button>
 
-                <div id="map"></div> <!-- Add the map container -->
+                <div id="map"></div> <!-- Adaugă containerul pentru hartă -->
 
-                <label for="pest">Pest Name:</label>
+                <label for="pest">Nume Dăunător:</label>
                 <select id="pest" name="pest" onchange="toggleOtherPest()">
-                    <option value="pest">Pest</option>
-                    <option value="disease">Disease</option>
-                    <option value="other">Other</option>
+                    <option value="GANDACUL DE COLORADO">Gândacul de Colorado</option>
+                    <option value="PAIANJENUL ROSU COMUN">Păianjenul Roșu Comun</option>
+                    <option value="Alt daunator">Alt Dăunător</option>
                 </select>
-                <input type="text" id="otherPest" name="otherPest" style="display: none;" placeholder="Enter pest name">
+                <input type="text" id="otherPest" name="otherPest" style="display: none;" placeholder="Introduceți numele dăunătorului">
 
-                <label for="description">Description:</label>
+                <label for="description">Descriere:</label>
                 <textarea id="description" name="description" required></textarea>
 
-                <label for="photos">Upload Photos:</label>
+                <label for="photos">Încărcați Fotografii:</label>
                 <input type="file" id="photos" name="photos[]" multiple>
 
-                <label for="name">Your Name:</label>
+                <label for="name">Numele Dumneavoastră:</label>
                 <input type="text" id="name" name="name" required>
 
-                <label for="email">Your Email:</label>
+                <label for="email">Adresa Dumneavoastră de Email:</label>
                 <input type="email" id="email" name="email" required>
 
-                <label for="phone">Your Phone Number (optional):</label>
+                <label for="phone">Numărul Dumneavoastră de Telefon (opțional):</label>
                 <input type="tel" id="phone" name="phone">
 
-                <button type="submit">Submit Report</button>
+                <button type="submit">Trimite Raportul</button>
             </form>
         </section>
     </main>
