@@ -128,26 +128,25 @@
     <main>
         <div id="map" style="height: 600px;"></div>
     </main>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0nqyY0gf4-4yxWV0gcAOSB1Yz_iu5Kks&callback=initMap" async defer></script>
+    <script>
+        function initMap() {
+            // Create a map centered on Romania
+            var romania = { lat: 45.9432, lng: 24.9668 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: romania,
+                zoom: 7
+            });
+            // Add wind map layer
+            var windLayer = new google.maps.ImageMapType({
+                getTileUrl: function(coord, zoom) {
+                    return 'https://tile.openweathermap.org/map/wind_new/' + zoom + '/' + coord.x + '/' + coord.y + '.png?appid=18ac129054734a0f87b182605241805';
+                },
+                tileSize: new google.maps.Size(256, 256),
+                opacity: 0.5
+            });
+            map.overlayMapTypes.push(windLayer);
+        }
+    </script>
 </body>
 </html>
-<div id="map" style="height: 600px;"></div>
-<script>
-    function initMap() {
-        // Create a map centered on Romania
-        var romania = { lat: 45.9432, lng: 24.9668 };
-        var map = L.map('map').setView(romania, 7);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-            maxZoom: 18,
-        }).addTo(map);
-        // Add wind map layer
-        var windLayer = L.tileLayer('https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=18ac129054734a0f87b182605241805', {
-            maxZoom: 18,
-            opacity: 0.5
-        }).addTo(map);
-    }
-</script>
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="script.js"></script>
