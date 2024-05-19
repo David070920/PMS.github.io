@@ -126,7 +126,7 @@
         </nav>
     </header>
 <div id="map"></div>
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0nqyY0gf4-4yxWV0gcAOSB1Yz_iu5KksY&callback=initMap" async defer></script>
 <script>
     function initMap() {
         // Create a map object and specify the DOM element for display
@@ -140,7 +140,7 @@
             const longitude = position.coords.longitude;
 
             // Fetch weather data from OpenWeatherMap API using the user's coordinates
-            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=YOUR_API_KEY`)
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=c727077b38f64754abbb2779b6920f9d`)
                 .then(response => response.json())
                 .then(data => {
                     // Get wind speed and direction from the weather data
