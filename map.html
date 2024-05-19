@@ -128,6 +128,7 @@
         </nav>
     </header>
 <div id="map"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0nqyY0gf4-4yxWV0gcAOSB1Yz_iu5Kks&callback=initMap" async defer></script>
 <script>
     function initMap() {
         // Create a map object and specify the DOM element for display
@@ -135,14 +136,41 @@
             center: {lat: 45.9432, lng: 24.9668}, // Set the center to Romania's coordinates
             zoom: 8
         });
+        // Get the user's current location
+        navigator.geolocation.getCurrentPosition(position => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
 
-        // Add wind speed and direction layer
-        L.tileLayer('https://{s}.tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid={API_KEY}', {
-            maxZoom: 18,
-            opacity: 0.5,
-            attribution: 'Map data &copy; <a href="https://openweathermap.org">OpenWeatherMap</a>',
-            API_KEY: 'YOUR_OPENWEATHERMAP_API_KEY'
-        }).addTo(map);
+            // Fetch weather data from OpenWeatherMap API using the user's coordinates
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=your_api_key`)
+                .then(response => response.json())
+                .then(data => {
+                    // Get wind speed and direction from the weather data
+                    const windSpeed = data.wind.speed;
+                    const windDirection = data.wind.deg;
+
+                    // Create a wind layer on the map
+                    const windLayer = new google.maps.weather.WeatherLayer({
+                        temperatureUnits: google.maps.weather.TemperatureUnit.CELSIUS,
+                        windSpeedUnit: google.maps.weather.WindSpeedUnit.KILOMETERS_PER_HOUR,
+                        windOverlay: {
+                            control: google.maps.weather.WindControl.DISPLAY,
+                            color: '#3366FF',
+                            opacity: 0.8
+                        }
+                    });
+
+                    // Set the wind speed and direction on the wind layer
+                    windLayer.setWind(windSpeed, windDirection);
+
+                    // Add the wind layer to the map
+                    windLayer.setMap(map);
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                });
+        });
+        
     }
 </script>
 </html>
