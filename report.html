@@ -178,3 +178,42 @@
     </footer>
 </body>
 </html>
+<div id="map"></div>
+
+<script>
+    var map;
+    var marker;
+
+    function initMap() {
+        // Initialize map
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 0, lng: 0 },
+            zoom: 8
+        });
+
+        // Add click event listener to map
+        map.addListener("click", function(event) {
+            placeMarker(event.latLng);
+        });
+    }
+
+    function placeMarker(location) {
+        // Remove existing marker
+        if (marker) {
+            marker.setMap(null);
+        }
+
+        // Add new marker
+        marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+
+        // Update input fields with coordinates
+        document.getElementById("latitude").value = location.lat();
+        document.getElementById("longitude").value = location.lng();
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+</body>
