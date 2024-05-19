@@ -140,28 +140,23 @@
                 <div id="map"></div> <!-- Adaugă containerul pentru hartă -->
 
                 <label for="pest">Nume Dăunător:</label>
-                <select id="pest" name="pest" onchange="toggleOtherPest()">
-                    <option value="GANDACUL DE COLORADO">Gândacul de Colorado</option>
-                    <option value="PAIANJENUL ROSU COMUN">Păianjenul Roșu Comun</option>
-                    <option value="Alt daunator">Alt Dăunător</option>
-                </select>
-                <input type="text" id="otherPest" name="otherPest" style="display: none;" placeholder="Introduceți numele dăunătorului">
-
+                <input type="text" id="pest" name="pest" onchange="toggleOtherPest()" placeholder="Introduceți numele dăunătorului">
+                <br><br>
                 <label for="description">Descriere:</label>
                 <textarea id="description" name="description" required></textarea>
-
+                <br><br>
                 <label for="photos">Încărcați Fotografii:</label>
                 <input type="file" id="photos" name="photos[]" multiple>
-
+                <br><br>
                 <label for="name">Numele Dumneavoastră:</label>
                 <input type="text" id="name" name="name" required>
-
+                <br><br>
                 <label for="email">Adresa Dumneavoastră de Email:</label>
                 <input type="email" id="email" name="email" required>
-
+                <br><br>
                 <label for="phone">Numărul Dumneavoastră de Telefon (opțional):</label>
                 <input type="tel" id="phone" name="phone">
-
+                <br><br>
                 <button type="submit">Trimite Raportul</button>
             </form>
         </section>
