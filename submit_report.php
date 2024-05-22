@@ -2,7 +2,7 @@
 
 $host = "localhost";
 $username = "root";
-$password = " ";
+$password = "root";
 $dbname = "pest_map";
 
 $conn = new mysqli($host, $username, $password, $dbname);
