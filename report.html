@@ -124,7 +124,7 @@
             <ul>
                 <li><a href="index.html">Acasă</a></li>
                 <li><a href="report.html">Raportează un Dăunător</a></li>
-                <li><a href="map.html">Hartă</a></li>
+                <li><a href="map1.php">Hartă</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -132,12 +132,15 @@
     <main>
         <section>
             <h2>Raportează o Infestare cu Dăunători sau Boli</h2>
-            <form action="submit_report.php" method="post" enctype="multipart/form-data">
-                <label for="location">Locație (Adresă sau Coordonate):</label>
+            <form action="submit_report.php" method="post">
+                <label for="location">Locație (Adresă)</label>
                 <input type="text" id="location" name="location" required>
                 <button type="button" onclick="getCoordinates()">Obține Coordonatele</button>
-
-                <div id="map"></div> <!-- Adaugă containerul pentru hartă -->
+                <label for="latitudie">Latitudine</label>
+                <input type="text" id="latitude" name="latitude" required>
+                <label for="longitude">Longitudine</label>
+                <input type="text" id="longitude" name="longitude" required>
+                <div id="map"></div> 
 
                 <label for="pest">Nume Dăunător:</label>
                 <input type="text" id="pest" name="pest" onchange="toggleOtherPest()" placeholder="Introduceți numele dăunătorului">
@@ -150,7 +153,7 @@
         </section>
     </main>
     <footer>
-        <!-- Footer content remains unchanged -->
+        
     </footer>
 
     <script>
@@ -171,47 +174,21 @@
         }
 
         function placeMarker(location) {
-            // Remove existing marker
+            
             if (marker) {
                 marker.setMap(null);
             }
 
-            // Add new marker
+            
             marker = new google.maps.Marker({
                 position: location,
                 map: map
             });
 
             // Update input field with coordinates
-            document.getElementById("location").value = location.lat() + ", " + location.lng();
+            document.getElementById("latitude").value = location.lat();
+            document.getElementById("longitude").value = location.lng();
         }
-
-        function submitForm(event) {
-            event.preventDefault(); // Prevent the form from submitting normally
-
-            // Get the form values
-            var location = document.getElementById("location").value;
-            var pest = document.getElementById("pest").value;
-            var lastSpotted = document.getElementById("lastSpotted").value;
-
-            // Create a new line of data
-            var dataLine = location + "," + pest + "," + lastSpotted;
-
-            // Write the data to the CSV file
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "write_to_csv.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log("Data written to CSV file successfully");
-            }
-            };
-            xhr.send("data=" + encodeURIComponent(dataLine) + "&filename=daunatori.csv");
-        }
-
-        // Add the submit event listener to the form
-        var form = document.querySelector("form");
-        form.addEventListener("submit", submitForm);
 
         function getCoordinates() {
             // Get the location input value
@@ -228,7 +205,8 @@
                 var coordinates = result.geometry.location;
 
                 // Update the input field with the coordinates
-                document.getElementById("location").value = coordinates.lat() + ", " + coordinates.lng();
+                document.getElementById("latitude").value = coordinates.lat();
+                document.getElementById("longitude").value = coordinates.lng();
 
                 // Place a marker on the map
                 placeMarker(coordinates);
